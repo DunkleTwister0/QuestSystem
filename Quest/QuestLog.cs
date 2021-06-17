@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Quest
+namespace QuestSystem
 {
     static class QuestLog
     {
@@ -89,7 +89,11 @@ namespace Assets.Scripts.Quest
             }
         }
 
-
+        /// <summary>
+        /// Returns int value with XP reward from a quest.
+        /// </summary>
+        /// <param name="quest"></param>
+        /// <returns></returns>
         public static int GiveXPReward(Quest quest)
         {
             if (!quest.GetReward().redeemedXP)
@@ -105,6 +109,11 @@ namespace Assets.Scripts.Quest
             }
         }
 
+        /// <summary>
+        /// Returns gameObject with item reward from quest.
+        /// </summary>
+        /// <param name="quest"></param>
+        /// <returns></returns>
         public static GameObject GiveItemReward(Quest quest)
         {
             if (!quest.GetReward().redeemedItem && quest.GetReward() != null)
@@ -118,6 +127,16 @@ namespace Assets.Scripts.Quest
             {
                 return null;
             }
+        }
+
+        public static List<Quest> GetAcceptedQuests()
+        {
+            return _acceptedQuests;
+        }
+
+        public static List<Quest> GetCompletedQuests()
+        {
+            return _completedQuests;
         }
     }
 }

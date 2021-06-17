@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Quest
+namespace QuestSystem
 {
     class Fetch: Quest
     {
@@ -60,7 +60,7 @@ namespace Assets.Scripts.Quest
         /// <param name="questGiver"></param>
         /// <param name="objectID"></param>
         /// <param name="item"></param>
-        public Fetch(string questName, string questDescription, int levelRequirement, Reward reward, QuestGiver questGiver, int objectID, GameObject item)
+        public Fetch(string questName, string questDescription, int levelRequirement, Reward reward, QuestGiver questGiver, GameObject item)
         {
             _questName = questName;
             _questDescription = questDescription;
@@ -72,7 +72,6 @@ namespace Assets.Scripts.Quest
             _completionStatus = false;
 
             amountNeeded = 1;
-            this.objectID = objectID;
         }
 
         /// <summary>
@@ -87,12 +86,36 @@ namespace Assets.Scripts.Quest
         /// <param name="objectID"></param>
         /// <param name="item"></param>
         /// <param name="amountNeeded"></param>
-        public Fetch(string questName, string questDescription, int levelRequirement, Vector3 questLocation, Reward reward, QuestGiver questGiver, int objectID, GameObject item, int amountNeeded)
+        public Fetch(string questName, string questDescription, int levelRequirement, Vector3 questLocation, Reward reward, QuestGiver questGiver, GameObject item, int amountNeeded)
         {
             _questName = questName;
             _questDescription = questDescription;
             _levelRequirement = levelRequirement;
             _item = item;
+            _questLocation = questLocation;
+            _reward = reward;
+            _questGiver = questGiver;
+            _completionStatus = false;
+
+            this.amountNeeded = amountNeeded;
+        }
+
+        /// <summary>
+        /// Takes object ID rather than gameObject as parameter. Gameobject can later be set through it's property.
+        /// </summary>
+        /// <param name="questName"></param>
+        /// <param name="questDescription"></param>
+        /// <param name="levelRequirement"></param>
+        /// <param name="questLocation"></param>
+        /// <param name="reward"></param>
+        /// <param name="questGiver"></param>
+        /// <param name="objectID"></param>
+        /// <param name="amountNeeded"></param>
+        public Fetch(string questName, string questDescription, int levelRequirement, Vector3 questLocation, Reward reward, QuestGiver questGiver, int objectID, int amountNeeded)
+        {
+            _questName = questName;
+            _questDescription = questDescription;
+            _levelRequirement = levelRequirement;
             _questLocation = questLocation;
             _reward = reward;
             _questGiver = questGiver;
